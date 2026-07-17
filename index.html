@@ -364,45 +364,76 @@
           <div class="grid grid-cols-2 gap-3.5 sm:gap-4">
             <!-- マスカット -->
             <button type="button" class="stop-btn" data-key="grape" style="--glow:#FFC94D;" aria-label="マスカットを1加算">
-              <span id="badge-grape" class="well absolute -right-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full font-mono text-[11px] text-grape">0</span>
-              <span class="text-3xl sm:text-4xl" aria-hidden="true">🍇</span>
+              <span id="badge-grape" class="well absolute -right-2 -top-2 flex h-10 min-w-[2.75rem] items-center justify-center rounded-2xl px-2 font-mono text-xl font-black leading-none text-grape sm:-right-2.5 sm:-top-2.5 sm:h-12 sm:min-w-[3.25rem] sm:text-2xl">0</span>
+              <svg viewBox="0 0 64 64" class="h-12 w-12 drop-shadow-[0_2px_2px_rgba(0,0,0,0.35)] sm:h-16 sm:w-16" aria-hidden="true">
+                <defs>
+                  <path id="mascat-dot" d="M-8,-1 C-8.6,-6.6 -3.4,-9.2 1.1,-8.6 C6.2,-8 8.7,-4 8.1,1.2 C7.5,6.7 3,9.2 -1.6,8.6 C-7.2,7.9 -8.6,4.6 -8,-1 Z"/>
+                </defs>
+                <path d="M31 5 C31 5 29.5 11 31.5 15" fill="none" stroke="#6b5a2a" stroke-width="3.5" stroke-linecap="round"/>
+                <g fill="#a8d33c" stroke="#2b3410" stroke-width="2.5" stroke-linejoin="round">
+                  <use href="#mascat-dot" transform="translate(32,18) rotate(-6) scale(1.05)"/>
+                  <use href="#mascat-dot" transform="translate(21,30) rotate(10) scale(0.95)"/>
+                  <use href="#mascat-dot" transform="translate(41,29) rotate(-14) scale(1.1)"/>
+                  <use href="#mascat-dot" transform="translate(15,44) rotate(4) scale(0.9)"/>
+                  <use href="#mascat-dot" transform="translate(32,45) rotate(-8) scale(1)"/>
+                  <use href="#mascat-dot" transform="translate(48,43) rotate(12) scale(0.98)"/>
+                </g>
+              </svg>
               <span class="rounded-full bg-black/40 px-2.5 py-0.5 text-[12px] font-black text-white/95">マスカット</span>
             </button>
 
             <!-- チェリー -->
             <button type="button" class="stop-btn" data-key="cherry" style="--glow:#FF3E6C;" aria-label="チェリーを1加算">
-              <span id="badge-cherry" class="well absolute -right-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full font-mono text-[11px] text-rose">0</span>
-              <span class="text-3xl sm:text-4xl" aria-hidden="true">🍒</span>
+              <span id="badge-cherry" class="well absolute -right-2 -top-2 flex h-10 min-w-[2.75rem] items-center justify-center rounded-2xl px-2 font-mono text-xl font-black leading-none text-rose sm:-right-2.5 sm:-top-2.5 sm:h-12 sm:min-w-[3.25rem] sm:text-2xl">0</span>
+              <svg viewBox="0 0 64 64" class="h-12 w-12 drop-shadow-[0_2px_2px_rgba(0,0,0,0.35)] sm:h-16 sm:w-16" aria-hidden="true">
+                <path d="M33 12 C31 20 27 30 24 40" fill="none" stroke="#7a3322" stroke-width="3.4" stroke-linecap="round"/>
+                <path d="M33 12 C37 21 40 32 43 44" fill="none" stroke="#7a3322" stroke-width="3.4" stroke-linecap="round"/>
+                <path d="M31 10 C35 4 43 5 45 11 C47 16 42 19 37 18 C32 17 28 15 31 10 Z" fill="#5bb04a" stroke="#254016" stroke-width="2" stroke-linejoin="round"/>
+                <path d="m-10.2,-1 C-10.8,-8.4 -3.9,-12 2,-10.8 C8.6,-9.4 11.5,-4.7 10.7,1.8 C9.9,8.7 3.4,12 -2.9,10.7 C-9.6,9.3 -11,5.3 -10.2,-1 Z" fill="#ff4d5e" stroke="#5c1420" stroke-width="2.5" stroke-linejoin="round" transform="translate(24,41) rotate(-8)"/>
+                <path d="m-10.2,-1 C-10.6,-8.4 -3.9,-12 2,-10.8 C8.6,-9.4 11.5,-4.7 10.7,1.8 C9.9,8.7 3.4,12 -2.9,10.7 C-9.6,9.3 -11,5.3 -10.2,-1 Z" fill="#ff5f6e" stroke="#5c1420" stroke-width="2.5" stroke-linejoin="round" transform="translate(43,45) rotate(10) scale(1.06)"/>
+              </svg>
               <span class="rounded-full bg-black/40 px-2.5 py-0.5 text-[12px] font-black text-white/95">チェリー</span>
             </button>
 
             <!-- 単独BB -->
             <button type="button" class="stop-btn" data-key="bbSolo" style="--glow:#FF8A24;" aria-label="単独BBを1加算">
-              <span id="badge-bb-solo" class="well absolute -right-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full font-mono text-[11px] text-bb">0</span>
-              <span class="font-display text-xl font-extrabold text-black/80 sm:text-2xl" aria-hidden="true">BB</span>
+              <span id="badge-bb-solo" class="well absolute -right-2 -top-2 flex h-10 min-w-[2.75rem] items-center justify-center rounded-2xl px-2 font-mono text-xl font-black leading-none text-bb sm:-right-2.5 sm:-top-2.5 sm:h-12 sm:min-w-[3.25rem] sm:text-2xl">0</span>
+              <svg viewBox="0 0 64 64" class="h-12 w-12 drop-shadow-[0_2px_2px_rgba(0,0,0,0.35)] sm:h-16 sm:w-16" aria-hidden="true">
+                <path d="M19 17 L46 15 L25 49" fill="none" stroke="#3d1f00" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19 17 L46 15 L25 49" fill="none" stroke="#ffab4d" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
               <span class="rounded-full bg-black/40 px-2.5 py-0.5 text-[12px] font-black text-white/95">単独BB</span>
             </button>
 
             <!-- チェリー重複BB -->
             <button type="button" class="stop-btn" data-key="bbCherry" style="--glow:#FF8A24;" aria-label="チェリー重複BBを1加算">
-              <span id="badge-bb-cherry" class="well absolute -right-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full font-mono text-[11px] text-bb">0</span>
+              <span id="badge-bb-cherry" class="well absolute -right-2 -top-2 flex h-10 min-w-[2.75rem] items-center justify-center rounded-2xl px-2 font-mono text-xl font-black leading-none text-bb sm:-right-2.5 sm:-top-2.5 sm:h-12 sm:min-w-[3.25rem] sm:text-2xl">0</span>
               <span class="absolute -left-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full border border-rose bg-black/80 text-sm shadow" aria-hidden="true">🍒</span>
-              <span class="font-display text-xl font-extrabold text-black/80 sm:text-2xl" aria-hidden="true">BB</span>
+              <svg viewBox="0 0 64 64" class="h-12 w-12 drop-shadow-[0_2px_2px_rgba(0,0,0,0.35)] sm:h-16 sm:w-16" aria-hidden="true">
+                <path d="M19 17 L46 15 L25 49" fill="none" stroke="#3d1f00" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19 17 L46 15 L25 49" fill="none" stroke="#ffab4d" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
               <span class="rounded-full bg-black/40 px-2.5 py-0.5 text-[12px] font-black text-white/95">重複BB</span>
             </button>
 
             <!-- 単独RB -->
             <button type="button" class="stop-btn" data-key="rbSolo" style="--glow:#9B5CFF;" aria-label="単独RBを1加算">
-              <span id="badge-rb-solo" class="well absolute -right-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full font-mono text-[11px] text-violet">0</span>
-              <span class="font-display text-xl font-extrabold text-black/80 sm:text-2xl" aria-hidden="true">RB</span>
+              <span id="badge-rb-solo" class="well absolute -right-2 -top-2 flex h-10 min-w-[2.75rem] items-center justify-center rounded-2xl px-2 font-mono text-xl font-black leading-none text-violet sm:-right-2.5 sm:-top-2.5 sm:h-12 sm:min-w-[3.25rem] sm:text-2xl">0</span>
+              <svg viewBox="0 0 64 64" class="h-12 w-12 drop-shadow-[0_2px_2px_rgba(0,0,0,0.35)] sm:h-16 sm:w-16" aria-hidden="true">
+                <path d="M32 9 C36 9 38 13 41 18 L48 28 C51 31 51 33 48 36 L41 46 C38 51 36 55 32 55 C28 55 26 51 23 46 L16 36 C13 33 13 31 16 28 L23 18 C26 13 28 9 32 9 Z" fill="#b58cff" stroke="#2a1750" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M32 20 C33 20 34 21 35 23 L39 30 C40 32 40 33 39 35 L35 42 C34 44 33 45 32 45 C31 45 30 44 29 42 L25 35 C24 33 24 32 25 30 L29 23 C30 21 31 20 32 20 Z" fill="#efe0ff" opacity="0.55"/>
+              </svg>
               <span class="rounded-full bg-black/40 px-2.5 py-0.5 text-[12px] font-black text-white/95">単独RB</span>
             </button>
 
             <!-- チェリー重複RB -->
             <button type="button" class="stop-btn" data-key="rbCherry" style="--glow:#9B5CFF;" aria-label="チェリー重複RBを1加算">
-              <span id="badge-rb-cherry" class="well absolute -right-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full font-mono text-[11px] text-violet">0</span>
+              <span id="badge-rb-cherry" class="well absolute -right-2 -top-2 flex h-10 min-w-[2.75rem] items-center justify-center rounded-2xl px-2 font-mono text-xl font-black leading-none text-violet sm:-right-2.5 sm:-top-2.5 sm:h-12 sm:min-w-[3.25rem] sm:text-2xl">0</span>
               <span class="absolute -left-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full border border-rose bg-black/80 text-sm shadow" aria-hidden="true">🍒</span>
-              <span class="font-display text-xl font-extrabold text-black/80 sm:text-2xl" aria-hidden="true">RB</span>
+              <svg viewBox="0 0 64 64" class="h-12 w-12 drop-shadow-[0_2px_2px_rgba(0,0,0,0.35)] sm:h-16 sm:w-16" aria-hidden="true">
+                <path d="M32 9 C36 9 38 13 41 18 L48 28 C51 31 51 33 48 36 L41 46 C38 51 36 55 32 55 C28 55 26 51 23 46 L16 36 C13 33 13 31 16 28 L23 18 C26 13 28 9 32 9 Z" fill="#b58cff" stroke="#2a1750" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M32 20 C33 20 34 21 35 23 L39 30 C40 32 40 33 39 35 L35 42 C34 44 33 45 32 45 C31 45 30 44 29 42 L25 35 C24 33 24 32 25 30 L29 23 C30 21 31 20 32 20 Z" fill="#efe0ff" opacity="0.55"/>
+              </svg>
               <span class="rounded-full bg-black/40 px-2.5 py-0.5 text-[12px] font-black text-white/95">重複RB</span>
             </button>
           </div>
@@ -468,7 +499,8 @@
 (function () {
   'use strict';
 
-  var STORAGE_KEY = 'jugglerCounter.state.v1';
+  var STORAGE_KEY = 'jugglerCounter.state.v2'; // v2: per-machine data. v1 was a single flat session shared across machines.
+  var LEGACY_STORAGE_KEY_V1 = 'jugglerCounter.state.v1';
   var VALID_KEYS = ['grape', 'cherry', 'bbSolo', 'bbCherry', 'rbSolo', 'rbCherry'];
   var MACHINE_IDS = ['m1', 'm2', 'm3', 'm4', 'm5', 'm6'];
   var MACHINE_LABELS = {
@@ -507,14 +539,22 @@
 
   var state = null;
 
-  function createDefaultState() {
+  // One machine's worth of session data — G数・カウント・履歴 all live here, keyed per machine.
+  function createEmptyMachineData() {
     return {
       totalG: 0,
       startG: 0,
       counts: { grape: 0, cherry: 0, bbSolo: 0, bbCherry: 0, rbSolo: 0, rbCherry: 0 },
       history: [],
-      machine: 'm2',
     };
+  }
+
+  function createDefaultState() {
+    var data = {};
+    MACHINE_IDS.forEach(function (id) {
+      data[id] = createEmptyMachineData();
+    });
+    return { machine: 'm2', data: data };
   }
 
   function toSafeNonNegativeInt(value, fallback) {
@@ -525,8 +565,8 @@
 
   // Merges arbitrary/possibly-corrupt data (e.g. hand-edited localStorage) onto a
   // known-good default so a bad value can never crash rendering or produce NaN.
-  function sanitizeState(raw) {
-    var base = createDefaultState();
+  function sanitizeMachineData(raw) {
+    var base = createEmptyMachineData();
     if (!raw || typeof raw !== 'object') return base;
 
     var totalG = toSafeNonNegativeInt(raw.totalG, base.totalG);
@@ -542,16 +582,49 @@
       ? raw.history.filter(function (key) { return VALID_KEYS.indexOf(key) !== -1; })
       : [];
 
-    var machine = MACHINE_IDS.indexOf(raw.machine) !== -1 ? raw.machine : base.machine;
+    return { totalG: totalG, startG: startG, counts: counts, history: history };
+  }
 
-    return { totalG: totalG, startG: startG, counts: counts, history: history, machine: machine };
+  function sanitizeState(raw) {
+    var base = createDefaultState();
+    if (!raw || typeof raw !== 'object') return base;
+
+    var machine = MACHINE_IDS.indexOf(raw.machine) !== -1 ? raw.machine : base.machine;
+    var data = {};
+    MACHINE_IDS.forEach(function (id) {
+      var rawData = raw.data && typeof raw.data === 'object' ? raw.data[id] : null;
+      data[id] = sanitizeMachineData(rawData);
+    });
+
+    return { machine: machine, data: data };
+  }
+
+  // v1 stored a single flat session (no per-machine split) shared across whichever
+  // machine happened to be selected. Fold it into the v2 shape under that machine.
+  function migrateLegacyState(raw) {
+    var base = createDefaultState();
+    if (!raw || typeof raw !== 'object') return base;
+
+    var machine = MACHINE_IDS.indexOf(raw.machine) !== -1 ? raw.machine : base.machine;
+    base.machine = machine;
+    base.data[machine] = sanitizeMachineData(raw);
+    return base;
   }
 
   function loadState() {
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return createDefaultState();
-      return sanitizeState(JSON.parse(raw));
+      if (raw) return sanitizeState(JSON.parse(raw));
+
+      var legacyRaw = localStorage.getItem(LEGACY_STORAGE_KEY_V1);
+      if (legacyRaw) {
+        var migrated = migrateLegacyState(JSON.parse(legacyRaw));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
+        localStorage.removeItem(LEGACY_STORAGE_KEY_V1);
+        return migrated;
+      }
+
+      return createDefaultState();
     } catch (err) {
       console.warn('[juggler-counter] state を復元できなかったため初期状態を使用します:', err);
       return createDefaultState();
@@ -564,6 +637,12 @@
     } catch (err) {
       console.warn('[juggler-counter] state を保存できませんでした（LocalStorage無効/容量超過の可能性）:', err);
     }
+  }
+
+  // The active machine's data — every read/write in the app goes through this so
+  // switching machines can never leak one machine's counts into another's.
+  function current() {
+    return state.data[state.machine];
   }
 
   function clampPercent(n) {
@@ -597,11 +676,12 @@
   }
 
   function computeDerived() {
-    var totalG = state.totalG;
-    var startG = state.startG;
+    var data = current();
+    var totalG = data.totalG;
+    var startG = data.startG;
     var rawActual = totalG - startG;
     var actual = Math.max(0, rawActual);
-    var counts = state.counts;
+    var counts = data.counts;
     var bbTotal = counts.bbSolo + counts.bbCherry;
     var rbTotal = counts.rbSolo + counts.rbCherry;
     var grandTotal = bbTotal + rbTotal;
@@ -618,7 +698,7 @@
 
   function render() {
     var d = computeDerived();
-    var counts = state.counts;
+    var counts = current().counts;
 
     setText('hero-value', String(d.actual));
     setText('hero-subcaption', d.totalG + 'G − ' + d.startG + 'G = 実質プレイ量');
@@ -649,7 +729,7 @@
     setText('prob-total', formatProb(d.actual, d.grandTotal));
 
     var undoBtn = document.getElementById('undo-btn');
-    if (undoBtn) undoBtn.disabled = state.history.length === 0;
+    if (undoBtn) undoBtn.disabled = current().history.length === 0;
 
     setText('machine-label-text', MACHINE_LABELS[state.machine] || MACHINE_LABELS.m2);
   }
@@ -663,48 +743,63 @@
     var btn = event.currentTarget;
     var key = btn.dataset.key;
     if (VALID_KEYS.indexOf(key) === -1) return;
-    state.counts[key] += 1;
-    state.history.push(key); // history stack drives Undo — one entry per tap, in order
+    var data = current();
+    data.counts[key] += 1;
+    data.history.push(key); // history stack drives Undo — one entry per tap, in order
     persistAndRender();
   }
 
   function handleUndoClick() {
-    if (state.history.length === 0) return;
-    var lastKey = state.history.pop();
-    if (state.counts[lastKey] > 0) state.counts[lastKey] -= 1;
+    var data = current();
+    if (data.history.length === 0) return;
+    var lastKey = data.history.pop();
+    if (data.counts[lastKey] > 0) data.counts[lastKey] -= 1;
     persistAndRender();
   }
 
   function handleTotalGInput(event) {
-    state.totalG = toSafeNonNegativeInt(event.target.value, 0);
+    current().totalG = toSafeNonNegativeInt(event.target.value, 0);
     persistAndRender();
   }
 
   function handleStartGInput(event) {
-    state.startG = toSafeNonNegativeInt(event.target.value, 0);
+    current().startG = toSafeNonNegativeInt(event.target.value, 0);
     persistAndRender();
+  }
+
+  // Tapping into a G-number field selects its full value so typing immediately
+  // overwrites it — no manual clear-then-type friction mid-session.
+  function handleGInputFocus(event) {
+    event.target.select();
+  }
+
+  function applyCurrentMachineDataToInputs() {
+    var data = current();
+    var totalGInput = document.getElementById('total-g');
+    var startGInput = document.getElementById('start-g');
+    if (totalGInput) totalGInput.value = data.totalG;
+    if (startGInput) startGInput.value = data.startG;
   }
 
   function handleMachineChange(event) {
     if (!event.target.checked) return;
-    state.machine = event.target.id;
+    var nextMachine = event.target.id;
+    if (nextMachine === state.machine) return;
+    state.machine = nextMachine; // swap the active machine — each keeps its own totalG/startG/counts/history
+    applyCurrentMachineDataToInputs();
     persistAndRender();
   }
 
   function handleResetClick() {
-    var confirmed = window.confirm('このセッションのG数・カウント・履歴をすべて消去します。よろしいですか？');
+    var machineLabel = MACHINE_LABELS[state.machine] || MACHINE_LABELS.m2;
+    var confirmed = window.confirm(
+      '本当に現在の機種（' + machineLabel + '）のデータをリセットしますか？\nG数・カウント・履歴がすべて消去されます。他の機種のデータは残ります。'
+    );
     if (!confirmed) return;
 
-    state = createDefaultState();
+    state.data[state.machine] = createEmptyMachineData(); // only the active machine is cleared
 
-    var totalGInput = document.getElementById('total-g');
-    var startGInput = document.getElementById('start-g');
-    if (totalGInput) totalGInput.value = state.totalG;
-    if (startGInput) startGInput.value = state.startG;
-
-    var defaultRadio = document.getElementById(state.machine);
-    if (defaultRadio) defaultRadio.checked = true;
-
+    applyCurrentMachineDataToInputs();
     persistAndRender();
   }
 
@@ -713,10 +808,15 @@
 
     var totalGInput = document.getElementById('total-g');
     var startGInput = document.getElementById('start-g');
-    if (totalGInput) totalGInput.value = state.totalG;
-    if (startGInput) startGInput.value = state.startG;
-    if (totalGInput) totalGInput.addEventListener('input', handleTotalGInput);
-    if (startGInput) startGInput.addEventListener('input', handleStartGInput);
+    applyCurrentMachineDataToInputs();
+    if (totalGInput) {
+      totalGInput.addEventListener('input', handleTotalGInput);
+      totalGInput.addEventListener('focus', handleGInputFocus);
+    }
+    if (startGInput) {
+      startGInput.addEventListener('input', handleStartGInput);
+      startGInput.addEventListener('focus', handleGInputFocus);
+    }
 
     var restoredMachineRadio = document.getElementById(state.machine);
     if (restoredMachineRadio) restoredMachineRadio.checked = true;
