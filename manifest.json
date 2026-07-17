@@ -1,0 +1,30 @@
+{
+  "name": "Juggler Counter",
+  "short_name": "ジャグカウ",
+  "description": "ジャグラーシリーズ専用の実戦カウンター。実質回転数と各役の確率をワンタップで記録。",
+  "id": "./index.html",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#111115",
+  "theme_color": "#111115",
+  "lang": "ja",
+  "dir": "ltr",
+  "categories": ["utilities", "entertainment"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iIzExMTExNSIvPgogIDxkZWZzPgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJnIiBjeD0iMzIlIiBjeT0iMjYlIiByPSI4MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZmZlM2FkIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMzIlIiBzdG9wLWNvbG9yPSIjZmZiMDIwIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNjglIiBzdG9wLWNvbG9yPSIjZmY0ZDc1Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzliNWNmZiIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3QgeD0iMjQ2IiB5PSI3OCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjYwIiByeD0iMTAiIGZpbGw9IiM1YzQ0MjAiLz4KICA8Y2lyY2xlIGN4PSIyNTYiIGN5PSIxNjgiIHI9IjQ0IiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMTk2IiBjeT0iMjIyIiByPSI0NCIgZmlsbD0idXJsKCNnKSIvPgogIDxjaXJjbGUgY3g9IjMxNiIgY3k9IjIyMiIgcj0iNDQiIGZpbGw9InVybCgjZykiLz4KICA8Y2lyY2xlIGN4PSIxNjYiIGN5PSIyODYiIHI9IjQ0IiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMjU2IiBjeT0iMjg2IiByPSI0NCIgZmlsbD0idXJsKCNnKSIvPgogIDxjaXJjbGUgY3g9IjM0NiIgY3k9IjI4NiIgcj0iNDQiIGZpbGw9InVybCgjZykiLz4KICA8Y2lyY2xlIGN4PSIyMTEiIGN5PSIzNDYiIHI9IjQ0IiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMzAxIiBjeT0iMzQ2IiByPSI0NCIgZmlsbD0idXJsKCNnKSIvPgogIDxjaXJjbGUgY3g9IjI1NiIgY3k9IjQwNCIgcj0iNDQiIGZpbGw9InVybCgjZykiLz4KPC9zdmc+Cg==",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iIzExMTExNSIvPgogIDxkZWZzPgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJnIiBjeD0iMzIlIiBjeT0iMjYlIiByPSI4MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZmZlM2FkIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMzIlIiBzdG9wLWNvbG9yPSIjZmZiMDIwIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNjglIiBzdG9wLWNvbG9yPSIjZmY0ZDc1Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzliNWNmZiIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3QgeD0iMjQ2IiB5PSI3OCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjYwIiByeD0iMTAiIGZpbGw9IiM1YzQ0MjAiLz4KICA8Y2lyY2xlIGN4PSIyNTYiIGN5PSIxNjgiIHI9IjQ0IiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMTk2IiBjeT0iMjIyIiByPSI0NCIgZmlsbD0idXJsKCNnKSIvPgogIDxjaXJjbGUgY3g9IjMxNiIgY3k9IjIyMiIgcj0iNDQiIGZpbGw9InVybCgjZykiLz4KICA8Y2lyY2xlIGN4PSIxNjYiIGN5PSIyODYiIHI9IjQ0IiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMjU2IiBjeT0iMjg2IiByPSI0NCIgZmlsbD0idXJsKCNnKSIvPgogIDxjaXJjbGUgY3g9IjM0NiIgY3k9IjI4NiIgcj0iNDQiIGZpbGw9InVybCgjZykiLz4KICA8Y2lyY2xlIGN4PSIyMTEiIGN5PSIzNDYiIHI9IjQ0IiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMzAxIiBjeT0iMzQ2IiByPSI0NCIgZmlsbD0idXJsKCNnKSIvPgogIDxjaXJjbGUgY3g9IjI1NiIgY3k9IjQwNCIgcj0iNDQiIGZpbGw9InVybCgjZykiLz4KPC9zdmc+Cg==",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

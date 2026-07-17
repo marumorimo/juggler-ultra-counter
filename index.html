@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#111115" />
+<title>JUGGLER COUNTER ｜ ジャグラー実戦カウンター</title>
+<meta name="description" content="マイジャグ・アイム・ファンキーなど、ジャグラーシリーズ専用の実戦カウンター。実質回転数と設定判別に必要な各役の確率をワンタップで記録。" />
+
+<!-- PWA: manifest + icons -->
+<link rel="manifest" href="./manifest.json" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iIzExMTExNSIvPgogIDxkZWZzPgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJnIiBjeD0iMzIlIiBjeT0iMjYlIiByPSI4MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZmZlM2FkIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMzIlIiBzdG9wLWNvbG9yPSIjZmZiMDIwIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNjglIiBzdG9wLWNvbG9yPSIjZmY0ZDc1Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzliNWNmZiIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3QgeD0iMjQ2IiB5PSI3OCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjYwIiByeD0iMTAiIGZpbGw9IiM1YzQ0MjAiLz4KICA8Y2lyY2xlIGN4PSIyNTYiIGN5PSIxNjgiIHI9IjQ0IiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMTk2IiBjeT0iMjIyIiByPSI0NCIgZmlsbD0idXJsKCNnKSIvPgogIDxjaXJjbGUgY3g9IjMxNiIgY3k9IjIyMiIgcj0iNDQiIGZpbGw9InVybCgjZykiLz4KICA8Y2lyY2xlIGN4PSIxNjYiIGN5PSIyODYiIHI9IjQ0IiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMjU2IiBjeT0iMjg2IiByPSI0NCIgZmlsbD0idXJsKCNnKSIvPgogIDxjaXJjbGUgY3g9IjM0NiIgY3k9IjI4NiIgcj0iNDQiIGZpbGw9InVybCgjZykiLz4KICA8Y2lyY2xlIGN4PSIyMTEiIGN5PSIzNDYiIHI9IjQ0IiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMzAxIiBjeT0iMzQ2IiByPSI0NCIgZmlsbD0idXJsKCNnKSIvPgogIDxjaXJjbGUgY3g9IjI1NiIgY3k9IjQwNCIgcj0iNDQiIGZpbGw9InVybCgjZykiLz4KPC9zdmc+Cg==" />
+
+<!-- PWA: iOS home-screen support (Safari doesn't fully honor manifest.json yet) -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="ジャグカウ" />
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj4KICA8cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iIzExMTExNSIvPgogIDxkZWZzPgogICAgPHJhZGlhbEdyYWRpZW50IGlkPSJnIiBjeD0iMzIlIiBjeT0iMjYlIiByPSI4MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZmZlM2FkIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMzIlIiBzdG9wLWNvbG9yPSIjZmZiMDIwIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNjglIiBzdG9wLWNvbG9yPSIjZmY0ZDc1Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzliNWNmZiIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3QgeD0iMjQ2IiB5PSI3OCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjYwIiByeD0iMTAiIGZpbGw9IiM1YzQ0MjAiLz4KICA8Y2lyY2xlIGN4PSIyNTYiIGN5PSIxNjgiIHI9IjQ0IiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMTk2IiBjeT0iMjIyIiByPSI0NCIgZmlsbD0idXJsKCNnKSIvPgogIDxjaXJjbGUgY3g9IjMxNiIgY3k9IjIyMiIgcj0iNDQiIGZpbGw9InVybCgjZykiLz4KICA8Y2lyY2xlIGN4PSIxNjYiIGN5PSIyODYiIHI9IjQ0IiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMjU2IiBjeT0iMjg2IiByPSI0NCIgZmlsbD0idXJsKCNnKSIvPgogIDxjaXJjbGUgY3g9IjM0NiIgY3k9IjI4NiIgcj0iNDQiIGZpbGw9InVybCgjZykiLz4KICA8Y2lyY2xlIGN4PSIyMTEiIGN5PSIzNDYiIHI9IjQ0IiBmaWxsPSJ1cmwoI2cpIi8+CiAgPGNpcmNsZSBjeD0iMzAxIiBjeT0iMzQ2IiByPSI0NCIgZmlsbD0idXJsKCNnKSIvPgogIDxjaXJjbGUgY3g9IjI1NiIgY3k9IjQwNCIgcj0iNDQiIGZpbGw9InVybCgjZykiLz4KPC9zdmc+Cg==" />
+
+<!-- PWA: Android/Chrome home-screen support -->
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="application-name" content="ジャグカウ" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Orbitron:wght@600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          void: '#111115',
+          panel: '#1B1B21',
+          panel2: '#222229',
+          inset: '#0A0A0D',
+          fog: '#CBC9D3',
+          muted: '#75757F',
+          grape: '#FFC94D',
+          bb: '#FF8A24',
+          rose: '#FF3E6C',
+          violet: '#9B5CFF',
+          alert: '#FF2D4E',
+        },
+        fontFamily: {
+          display: ['Orbitron', 'sans-serif'],
+          body: ['"Noto Sans JP"', 'sans-serif'],
+          mono: ['"Share Tech Mono"', 'monospace'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  * { -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { font-feature-settings: "tnum" 1, "lnum" 1; }
+
+  .tabular { font-variant-numeric: tabular-nums; }
+
+  /* recessed LED-well surface, used for numeric inputs / hero readout / badges */
+  .well {
+    background: linear-gradient(180deg, #08080a, #0d0d10);
+    box-shadow:
+      inset 0 2px 5px rgba(0, 0, 0, 0.85),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.04),
+      0 1px 0 rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  /* hero digit readout */
+  .led-digits {
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(95deg, #ffd77a 0%, #ffb020 28%, #ff6f5c 55%, #b06bff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 18px rgba(255, 176, 32, 0.35)) drop-shadow(0 0 36px rgba(155, 92, 255, 0.18));
+    letter-spacing: 0.04em;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .pulse-dot { animation: pulse-dot 2.4s ease-in-out infinite; }
+    .breathe { animation: breathe 3.6s ease-in-out infinite; }
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 45, 78, 0.55); }
+    50% { opacity: 0.55; box-shadow: 0 0 0 5px rgba(255, 45, 78, 0); }
+  }
+  @keyframes breathe {
+    0%, 100% { filter: drop-shadow(0 0 18px rgba(255, 176, 32, 0.35)) drop-shadow(0 0 36px rgba(155, 92, 255, 0.18)); }
+    50% { filter: drop-shadow(0 0 26px rgba(255, 176, 32, 0.55)) drop-shadow(0 0 46px rgba(155, 92, 255, 0.3)); }
+  }
+
+  /* physical stop-button styling for count buttons — color set per-instance via --glow */
+  .stop-btn {
+    --glow: #ffb020;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    border-radius: 9999px;
+    border: 2px solid color-mix(in srgb, var(--glow) 65%, black 10%);
+    background:
+      radial-gradient(circle at 33% 28%,
+        color-mix(in srgb, var(--glow) 60%, white 25%) 0%,
+        color-mix(in srgb, var(--glow) 55%, black 25%) 45%,
+        color-mix(in srgb, var(--glow) 40%, black 70%) 75%,
+        #0a0a0d 100%);
+    box-shadow:
+      0 0 0 4px rgba(0, 0, 0, 0.45),
+      0 10px 18px -6px rgba(0, 0, 0, 0.7),
+      0 0 26px -4px color-mix(in srgb, var(--glow) 65%, transparent),
+      inset 0 3px 5px rgba(255, 255, 255, 0.35),
+      inset 0 -8px 14px rgba(0, 0, 0, 0.5);
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+    touch-action: manipulation;
+  }
+  .stop-btn:active {
+    transform: scale(0.94) translateY(2px);
+    box-shadow:
+      0 0 0 4px rgba(0, 0, 0, 0.45),
+      0 3px 8px -2px rgba(0, 0, 0, 0.7),
+      0 0 14px -2px color-mix(in srgb, var(--glow) 65%, transparent),
+      inset 0 3px 8px rgba(0, 0, 0, 0.55);
+  }
+  .stop-btn:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 4px;
+  }
+
+  .undo-bar {
+    background: repeating-linear-gradient(
+      135deg,
+      rgba(255, 45, 78, 0.9),
+      rgba(255, 45, 78, 0.9) 10px,
+      rgba(20, 8, 11, 0.9) 10px,
+      rgba(20, 8, 11, 0.9) 20px
+    );
+  }
+
+  /* native <details> chevron, custom */
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .chev { transform: rotate(180deg); }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+
+  input:focus-visible, a:focus-visible, summary:focus-visible, button:focus-visible {
+    outline: 2px solid #ffb020;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* radio-driven chip selector for machine picker — no JS required */
+  .chip-input { position: absolute; opacity: 0; pointer-events: none; }
+  .chip-label {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0.9rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #17171c;
+    color: #9a99a3;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.12s ease;
+  }
+  .chip-input:checked + .chip-label {
+    background: linear-gradient(135deg, rgba(255, 176, 32, 0.18), rgba(155, 92, 255, 0.18));
+    border-color: #ffb020;
+    color: #ffe3ad;
+    box-shadow: 0 0 0 1px rgba(255, 176, 32, 0.3), 0 0 16px -4px rgba(255, 176, 32, 0.5);
+  }
+  .chip-input:focus-visible + .chip-label {
+    outline: 2px solid #ffb020;
+    outline-offset: 2px;
+  }
+</style>
+</head>
+
+<body class="bg-void text-fog font-body min-h-screen antialiased">
+  <!-- ambient vignette / grain layer -->
+  <div class="pointer-events-none fixed inset-0 -z-10" style="
+      background:
+        radial-gradient(circle at 15% -10%, rgba(155,92,255,0.10), transparent 45%),
+        radial-gradient(circle at 100% 10%, rgba(255,176,32,0.08), transparent 40%),
+        radial-gradient(circle at 50% 120%, rgba(255,62,108,0.08), transparent 45%);
+    "></div>
+
+  <div class="mx-auto w-full max-w-md px-3 py-4 sm:px-4 sm:py-6 lg:max-w-5xl lg:px-8 lg:py-8">
+    <div class="lg:grid lg:grid-cols-[1.15fr_400px] lg:gap-6 lg:items-start">
+
+      <!-- ============ HEADER ============ -->
+      <header class="mb-4 flex items-center justify-between gap-3 lg:col-span-2">
+        <div class="flex items-center gap-2.5">
+          <div class="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-panel text-lg shadow-inner">🎰</div>
+          <div class="leading-tight">
+            <h1 class="font-display text-sm font-extrabold tracking-[0.14em] text-fog sm:text-base">JUGGLER COUNTER</h1>
+            <p class="text-[11px] font-bold tracking-wide text-muted">実戦カウンター</p>
+          </div>
+        </div>
+
+        <a href="#settings"
+           class="group flex items-center gap-2 rounded-full border border-white/10 bg-panel px-3 py-1.5 text-xs font-bold text-fog/90 transition hover:border-grape/50 hover:text-grape">
+          <span class="pulse-dot h-1.5 w-1.5 rounded-full bg-alert"></span>
+          <span class="hidden sm:inline">機種：</span>
+          <span id="machine-label-text" class="text-fog">アイムジャグラーEX</span>
+          <span aria-hidden="true" class="text-muted transition group-hover:text-grape">⚙</span>
+        </a>
+      </header>
+
+      <!-- ============ LEFT COLUMN : DATA / HERO / ANALYSIS ============ -->
+      <div class="flex flex-col gap-4 lg:gap-5">
+
+        <!-- ---- Data input: total G / start G ---- -->
+        <section aria-labelledby="data-heading" class="rounded-2xl border border-white/5 bg-panel p-3.5 sm:p-4">
+          <h2 id="data-heading" class="mb-3 text-[11px] font-bold uppercase tracking-[0.16em] text-muted">
+            データ入力 <span class="text-muted/70">— 前任者からの引き継ぎに対応</span>
+          </h2>
+
+          <div class="grid grid-cols-[1fr_auto_1fr] items-end gap-2">
+            <div>
+              <label for="total-g" class="mb-1.5 block text-[11px] font-bold text-fog/80">総回転数<span class="ml-1 text-muted">現在の総G数</span></label>
+              <div class="well flex items-center gap-1 rounded-xl px-3 py-2.5">
+                <input id="total-g" type="number" inputmode="numeric" value="4823"
+                  class="w-full min-w-0 bg-transparent font-display text-xl font-bold text-grape outline-none tabular sm:text-2xl" />
+                <span class="text-xs font-bold text-muted">G</span>
+              </div>
+            </div>
+
+            <div class="pb-3 font-display text-lg text-muted/70 sm:text-xl">−</div>
+
+            <div>
+              <label for="start-g" class="mb-1.5 block text-[11px] font-bold text-fog/80">スタートG数<span class="ml-1 text-muted">打ち始めた時点</span></label>
+              <div class="well flex items-center gap-1 rounded-xl px-3 py-2.5">
+                <input id="start-g" type="number" inputmode="numeric" value="1200"
+                  class="w-full min-w-0 bg-transparent font-display text-xl font-bold text-violet outline-none tabular sm:text-2xl" />
+                <span class="text-xs font-bold text-muted">G</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- Hero: 実戦回転数 ---- -->
+        <section aria-labelledby="hero-heading" class="well breathe rounded-2xl p-5 text-center sm:p-6">
+          <h2 id="hero-heading" class="mb-1 text-[11px] font-bold uppercase tracking-[0.22em] text-muted">
+            自分の実戦回転数 <span class="text-muted/60">MY ACTUAL SPINS</span>
+          </h2>
+          <p class="led-digits tabular text-[clamp(2.75rem,13vw,4.5rem)] font-extrabold leading-none">
+            <span id="hero-value">0</span><span class="ml-1 text-[0.4em] font-bold tracking-normal">G</span>
+          </p>
+          <p id="hero-subcaption" class="mt-2 text-[11px] font-bold text-muted">0G − 0G = 実質プレイ量</p>
+          <p id="g-warning" class="mt-1 hidden text-[10px] font-bold text-alert">スタートG数が総回転数を超えています</p>
+        </section>
+
+        <!-- ---- Analysis Board ---- -->
+        <section aria-labelledby="board-heading" class="rounded-2xl border border-white/5 bg-panel p-3.5 sm:p-4">
+          <div class="mb-3 flex items-center justify-between">
+            <h2 id="board-heading" class="text-[11px] font-bold uppercase tracking-[0.16em] text-muted">
+              Analysis Board <span class="text-muted/70">分析ボード</span>
+            </h2>
+            <span class="rounded-full border border-white/10 px-2 py-0.5 font-mono text-[10px] text-muted">LIVE</span>
+          </div>
+
+          <ul class="flex flex-col gap-2.5">
+            <!-- マスカット -->
+            <li class="flex items-center gap-2.5">
+              <span class="w-[92px] shrink-0 text-xs font-bold text-fog/90 sm:w-24">🍇 マスカット</span>
+              <div class="well h-2.5 flex-1 overflow-hidden rounded-full">
+                <div id="bar-grape" class="h-full rounded-full transition-[width] duration-300" style="width:0%; background:linear-gradient(90deg,#a66a00,#ffc94d);"></div>
+              </div>
+              <span id="prob-grape" class="w-16 shrink-0 text-right font-mono text-xs text-grape">-</span>
+            </li>
+            <!-- チェリー -->
+            <li class="flex items-center gap-2.5">
+              <span class="w-[92px] shrink-0 text-xs font-bold text-fog/90 sm:w-24">🍒 チェリー</span>
+              <div class="well h-2.5 flex-1 overflow-hidden rounded-full">
+                <div id="bar-cherry" class="h-full rounded-full transition-[width] duration-300" style="width:0%; background:linear-gradient(90deg,#7a1c30,#ff3e6c);"></div>
+              </div>
+              <span id="prob-cherry" class="w-16 shrink-0 text-right font-mono text-xs text-rose">-</span>
+            </li>
+            <!-- 単独BB -->
+            <li class="flex items-center gap-2.5">
+              <span class="w-[92px] shrink-0 text-xs font-bold text-fog/90 sm:w-24">単独BB</span>
+              <div class="well h-2.5 flex-1 overflow-hidden rounded-full">
+                <div id="bar-bb-solo" class="h-full rounded-full transition-[width] duration-300" style="width:0%; background:linear-gradient(90deg,#7a3d00,#ff8a24);"></div>
+              </div>
+              <span id="row-bb-solo" class="w-16 shrink-0 text-right font-mono text-xs text-bb">0回</span>
+            </li>
+            <!-- チェリー重複BB -->
+            <li class="flex items-center gap-2.5">
+              <span class="w-[92px] shrink-0 text-xs font-bold text-fog/90 sm:w-24">🍒重複BB</span>
+              <div class="well h-2.5 flex-1 overflow-hidden rounded-full">
+                <div id="bar-bb-cherry" class="h-full rounded-full transition-[width] duration-300" style="width:0%; background:linear-gradient(90deg,#7a3d00,#ff8a24);"></div>
+              </div>
+              <span id="row-bb-cherry" class="w-16 shrink-0 text-right font-mono text-xs text-bb">0回</span>
+            </li>
+            <!-- 単独RB -->
+            <li class="flex items-center gap-2.5">
+              <span class="w-[92px] shrink-0 text-xs font-bold text-fog/90 sm:w-24">単独RB</span>
+              <div class="well h-2.5 flex-1 overflow-hidden rounded-full">
+                <div id="bar-rb-solo" class="h-full rounded-full transition-[width] duration-300" style="width:0%; background:linear-gradient(90deg,#3e2470,#9b5cff);"></div>
+              </div>
+              <span id="row-rb-solo" class="w-16 shrink-0 text-right font-mono text-xs text-violet">0回</span>
+            </li>
+            <!-- チェリー重複RB -->
+            <li class="flex items-center gap-2.5">
+              <span class="w-[92px] shrink-0 text-xs font-bold text-fog/90 sm:w-24">🍒重複RB</span>
+              <div class="well h-2.5 flex-1 overflow-hidden rounded-full">
+                <div id="bar-rb-cherry" class="h-full rounded-full transition-[width] duration-300" style="width:0%; background:linear-gradient(90deg,#3e2470,#9b5cff);"></div>
+              </div>
+              <span id="row-rb-cherry" class="w-16 shrink-0 text-right font-mono text-xs text-violet">0回</span>
+            </li>
+
+            <li class="my-1 h-px bg-white/5"></li>
+
+            <!-- BB合算 -->
+            <li class="flex items-center gap-2.5">
+              <span class="w-[92px] shrink-0 text-xs font-bold text-fog/90 sm:w-24">BB合算</span>
+              <div class="well h-2.5 flex-1 overflow-hidden rounded-full">
+                <div id="bar-bb-total" class="h-full rounded-full transition-[width] duration-300" style="width:0%; background:linear-gradient(90deg,#7a3d00,#ff8a24);"></div>
+              </div>
+              <span id="prob-bb-total" class="w-16 shrink-0 text-right font-mono text-xs text-bb">-</span>
+            </li>
+            <!-- RB合算 -->
+            <li class="flex items-center gap-2.5">
+              <span class="w-[92px] shrink-0 text-xs font-bold text-fog/90 sm:w-24">RB合算</span>
+              <div class="well h-2.5 flex-1 overflow-hidden rounded-full">
+                <div id="bar-rb-total" class="h-full rounded-full transition-[width] duration-300" style="width:0%; background:linear-gradient(90deg,#3e2470,#9b5cff);"></div>
+              </div>
+              <span id="prob-rb-total" class="w-16 shrink-0 text-right font-mono text-xs text-violet">-</span>
+            </li>
+          </ul>
+
+          <!-- 合成確率 — emphasized total -->
+          <div class="well mt-3 flex items-center justify-between rounded-xl px-3.5 py-3">
+            <span class="text-xs font-bold text-fog">合成確率<span class="ml-1 text-muted">TOTAL</span></span>
+            <span id="prob-total" class="led-digits font-display text-lg font-bold tabular sm:text-xl">-</span>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============ RIGHT COLUMN : COUNT BUTTONS / UNDO ============ -->
+      <div class="mt-4 flex flex-col gap-4 lg:sticky lg:top-6 lg:mt-0">
+        <section aria-labelledby="buttons-heading" class="rounded-2xl border border-white/5 bg-panel p-3.5 sm:p-4">
+          <h2 id="buttons-heading" class="mb-3.5 text-[11px] font-bold uppercase tracking-[0.16em] text-muted">
+            カウント <span class="text-muted/70">タップで加算</span>
+          </h2>
+
+          <div class="grid grid-cols-2 gap-3.5 sm:gap-4">
+            <!-- マスカット -->
+            <button type="button" class="stop-btn" data-key="grape" style="--glow:#FFC94D;" aria-label="マスカットを1加算">
+              <span id="badge-grape" class="well absolute -right-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full font-mono text-[11px] text-grape">0</span>
+              <span class="text-3xl sm:text-4xl" aria-hidden="true">🍇</span>
+              <span class="rounded-full bg-black/40 px-2.5 py-0.5 text-[12px] font-black text-white/95">マスカット</span>
+            </button>
+
+            <!-- チェリー -->
+            <button type="button" class="stop-btn" data-key="cherry" style="--glow:#FF3E6C;" aria-label="チェリーを1加算">
+              <span id="badge-cherry" class="well absolute -right-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full font-mono text-[11px] text-rose">0</span>
+              <span class="text-3xl sm:text-4xl" aria-hidden="true">🍒</span>
+              <span class="rounded-full bg-black/40 px-2.5 py-0.5 text-[12px] font-black text-white/95">チェリー</span>
+            </button>
+
+            <!-- 単独BB -->
+            <button type="button" class="stop-btn" data-key="bbSolo" style="--glow:#FF8A24;" aria-label="単独BBを1加算">
+              <span id="badge-bb-solo" class="well absolute -right-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full font-mono text-[11px] text-bb">0</span>
+              <span class="font-display text-xl font-extrabold text-black/80 sm:text-2xl" aria-hidden="true">BB</span>
+              <span class="rounded-full bg-black/40 px-2.5 py-0.5 text-[12px] font-black text-white/95">単独BB</span>
+            </button>
+
+            <!-- チェリー重複BB -->
+            <button type="button" class="stop-btn" data-key="bbCherry" style="--glow:#FF8A24;" aria-label="チェリー重複BBを1加算">
+              <span id="badge-bb-cherry" class="well absolute -right-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full font-mono text-[11px] text-bb">0</span>
+              <span class="absolute -left-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full border border-rose bg-black/80 text-sm shadow" aria-hidden="true">🍒</span>
+              <span class="font-display text-xl font-extrabold text-black/80 sm:text-2xl" aria-hidden="true">BB</span>
+              <span class="rounded-full bg-black/40 px-2.5 py-0.5 text-[12px] font-black text-white/95">重複BB</span>
+            </button>
+
+            <!-- 単独RB -->
+            <button type="button" class="stop-btn" data-key="rbSolo" style="--glow:#9B5CFF;" aria-label="単独RBを1加算">
+              <span id="badge-rb-solo" class="well absolute -right-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full font-mono text-[11px] text-violet">0</span>
+              <span class="font-display text-xl font-extrabold text-black/80 sm:text-2xl" aria-hidden="true">RB</span>
+              <span class="rounded-full bg-black/40 px-2.5 py-0.5 text-[12px] font-black text-white/95">単独RB</span>
+            </button>
+
+            <!-- チェリー重複RB -->
+            <button type="button" class="stop-btn" data-key="rbCherry" style="--glow:#9B5CFF;" aria-label="チェリー重複RBを1加算">
+              <span id="badge-rb-cherry" class="well absolute -right-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full font-mono text-[11px] text-violet">0</span>
+              <span class="absolute -left-1.5 -top-1.5 flex h-7 w-7 items-center justify-center rounded-full border border-rose bg-black/80 text-sm shadow" aria-hidden="true">🍒</span>
+              <span class="font-display text-xl font-extrabold text-black/80 sm:text-2xl" aria-hidden="true">RB</span>
+              <span class="rounded-full bg-black/40 px-2.5 py-0.5 text-[12px] font-black text-white/95">重複RB</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- ---- Undo ---- -->
+        <button type="button" id="undo-btn" disabled
+          class="undo-bar flex items-center justify-center gap-2.5 rounded-2xl border border-alert/40 px-4 py-4 shadow-lg shadow-black/40 transition active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 disabled:active:scale-100"
+          aria-label="直前のカウントを1つ戻す">
+          <span class="text-xl" aria-hidden="true">↺</span>
+          <span class="font-body text-sm font-black tracking-wide text-white">1つ戻る</span>
+          <span class="font-mono text-[10px] tracking-widest text-white/70">UNDO</span>
+        </button>
+      </div>
+
+      <!-- ============ SETTINGS (機種選択など、目立たない場所に) ============ -->
+      <details id="settings" class="mt-5 rounded-2xl border border-white/5 bg-panel lg:col-span-2">
+        <summary class="flex items-center justify-between px-4 py-3.5 text-xs font-bold text-muted">
+          <span class="flex items-center gap-2">
+            <span aria-hidden="true">⚙</span> 設定・機種選択
+          </span>
+          <span class="chev text-muted transition-transform" aria-hidden="true">▾</span>
+        </summary>
+
+        <div class="border-t border-white/5 px-4 py-4">
+          <h3 class="mb-2.5 text-[11px] font-bold uppercase tracking-[0.16em] text-muted">機種を選択</h3>
+          <div class="flex flex-wrap gap-2">
+            <input type="radio" name="machine" id="m1" class="chip-input" />
+            <label for="m1" class="chip-label">マイジャグラーV</label>
+
+            <input type="radio" name="machine" id="m2" class="chip-input" checked />
+            <label for="m2" class="chip-label">アイムジャグラーEX</label>
+
+            <input type="radio" name="machine" id="m3" class="chip-input" />
+            <label for="m3" class="chip-label">ファンキージャグラー2</label>
+
+            <input type="radio" name="machine" id="m4" class="chip-input" />
+            <label for="m4" class="chip-label">ゴーゴージャグラー3</label>
+
+            <input type="radio" name="machine" id="m5" class="chip-input" />
+            <label for="m5" class="chip-label">ハッピージャグラーVIII</label>
+
+            <input type="radio" name="machine" id="m6" class="chip-input" />
+            <label for="m6" class="chip-label">ミスタージャグラー</label>
+          </div>
+
+          <div class="mt-4 flex items-center justify-between border-t border-white/5 pt-4">
+            <p class="text-[11px] text-muted">セッションのデータをすべて消去します</p>
+            <button type="button" id="reset-btn" class="rounded-full border border-alert/40 px-3.5 py-1.5 text-[11px] font-bold text-alert transition hover:bg-alert/10">
+              セッションをリセット
+            </button>
+          </div>
+        </div>
+      </details>
+
+      <p class="mt-4 pb-2 text-center text-[10px] text-muted/60 lg:col-span-2">
+        本ツールは記録用の実戦カウンターです。setting判別を保証するものではありません。
+      </p>
+    </div>
+  </div>
+
+<script>
+(function () {
+  'use strict';
+
+  var STORAGE_KEY = 'jugglerCounter.state.v1';
+  var VALID_KEYS = ['grape', 'cherry', 'bbSolo', 'bbCherry', 'rbSolo', 'rbCherry'];
+  var MACHINE_IDS = ['m1', 'm2', 'm3', 'm4', 'm5', 'm6'];
+  var MACHINE_LABELS = {
+    m1: 'マイジャグラーV',
+    m2: 'アイムジャグラーEX',
+    m3: 'ファンキージャグラー2',
+    m4: 'ゴーゴージャグラー3',
+    m5: 'ハッピージャグラーVIII',
+    m6: 'ミスタージャグラー',
+  };
+
+  // reference (理論値相当) denominators used only to scale the meter bars visually
+  var PROB_REF = { grape: 6, cherry: 32, bbTotal: 300, rbTotal: 400, total: 170 };
+  var ROW_COUNT_REF_MAX = 15;
+
+  var KEY_TO_BADGE = {
+    grape: 'badge-grape',
+    cherry: 'badge-cherry',
+    bbSolo: 'badge-bb-solo',
+    bbCherry: 'badge-bb-cherry',
+    rbSolo: 'badge-rb-solo',
+    rbCherry: 'badge-rb-cherry',
+  };
+  var KEY_TO_ROW_TEXT = {
+    bbSolo: 'row-bb-solo',
+    bbCherry: 'row-bb-cherry',
+    rbSolo: 'row-rb-solo',
+    rbCherry: 'row-rb-cherry',
+  };
+  var KEY_TO_ROW_BAR = {
+    bbSolo: 'bar-bb-solo',
+    bbCherry: 'bar-bb-cherry',
+    rbSolo: 'bar-rb-solo',
+    rbCherry: 'bar-rb-cherry',
+  };
+
+  var state = null;
+
+  function createDefaultState() {
+    return {
+      totalG: 0,
+      startG: 0,
+      counts: { grape: 0, cherry: 0, bbSolo: 0, bbCherry: 0, rbSolo: 0, rbCherry: 0 },
+      history: [],
+      machine: 'm2',
+    };
+  }
+
+  function toSafeNonNegativeInt(value, fallback) {
+    var n = typeof value === 'number' ? value : parseInt(value, 10);
+    if (!Number.isFinite(n)) return fallback;
+    return Math.max(0, Math.trunc(n));
+  }
+
+  // Merges arbitrary/possibly-corrupt data (e.g. hand-edited localStorage) onto a
+  // known-good default so a bad value can never crash rendering or produce NaN.
+  function sanitizeState(raw) {
+    var base = createDefaultState();
+    if (!raw || typeof raw !== 'object') return base;
+
+    var totalG = toSafeNonNegativeInt(raw.totalG, base.totalG);
+    var startG = toSafeNonNegativeInt(raw.startG, base.startG);
+
+    var counts = {};
+    VALID_KEYS.forEach(function (key) {
+      var rawCounts = raw.counts && typeof raw.counts === 'object' ? raw.counts : {};
+      counts[key] = toSafeNonNegativeInt(rawCounts[key], 0);
+    });
+
+    var history = Array.isArray(raw.history)
+      ? raw.history.filter(function (key) { return VALID_KEYS.indexOf(key) !== -1; })
+      : [];
+
+    var machine = MACHINE_IDS.indexOf(raw.machine) !== -1 ? raw.machine : base.machine;
+
+    return { totalG: totalG, startG: startG, counts: counts, history: history, machine: machine };
+  }
+
+  function loadState() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return createDefaultState();
+      return sanitizeState(JSON.parse(raw));
+    } catch (err) {
+      console.warn('[juggler-counter] state を復元できなかったため初期状態を使用します:', err);
+      return createDefaultState();
+    }
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (err) {
+      console.warn('[juggler-counter] state を保存できませんでした（LocalStorage無効/容量超過の可能性）:', err);
+    }
+  }
+
+  function clampPercent(n) {
+    return Math.max(0, Math.min(100, n));
+  }
+
+  // Zero-division-safe "1/x" formatter — any non-computable case renders '-' instead of NaN/Infinity.
+  function formatProb(spins, count) {
+    if (!Number.isFinite(spins) || !Number.isFinite(count) || spins <= 0 || count <= 0) return '-';
+    return '1/ ' + (spins / count).toFixed(1);
+  }
+
+  function probMeterWidth(spins, count, refDenom) {
+    if (!Number.isFinite(spins) || !Number.isFinite(count) || spins <= 0 || count <= 0) return 0;
+    return clampPercent((refDenom / (spins / count)) * 100);
+  }
+
+  function countMeterWidth(count) {
+    if (!Number.isFinite(count) || count <= 0) return 0;
+    return clampPercent((count / ROW_COUNT_REF_MAX) * 100);
+  }
+
+  function setText(id, text) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = text;
+  }
+
+  function setWidth(id, percent) {
+    var el = document.getElementById(id);
+    if (el) el.style.width = percent + '%';
+  }
+
+  function computeDerived() {
+    var totalG = state.totalG;
+    var startG = state.startG;
+    var rawActual = totalG - startG;
+    var actual = Math.max(0, rawActual);
+    var counts = state.counts;
+    var bbTotal = counts.bbSolo + counts.bbCherry;
+    var rbTotal = counts.rbSolo + counts.rbCherry;
+    var grandTotal = bbTotal + rbTotal;
+    return {
+      totalG: totalG,
+      startG: startG,
+      rawActual: rawActual,
+      actual: actual,
+      bbTotal: bbTotal,
+      rbTotal: rbTotal,
+      grandTotal: grandTotal,
+    };
+  }
+
+  function render() {
+    var d = computeDerived();
+    var counts = state.counts;
+
+    setText('hero-value', String(d.actual));
+    setText('hero-subcaption', d.totalG + 'G − ' + d.startG + 'G = 実質プレイ量');
+
+    var warningEl = document.getElementById('g-warning');
+    if (warningEl) warningEl.classList.toggle('hidden', d.rawActual >= 0);
+
+    VALID_KEYS.forEach(function (key) {
+      setText(KEY_TO_BADGE[key], String(counts[key]));
+    });
+    Object.keys(KEY_TO_ROW_TEXT).forEach(function (key) {
+      setText(KEY_TO_ROW_TEXT[key], counts[key] + '回');
+      setWidth(KEY_TO_ROW_BAR[key], countMeterWidth(counts[key]));
+    });
+
+    setText('prob-grape', formatProb(d.actual, counts.grape));
+    setWidth('bar-grape', probMeterWidth(d.actual, counts.grape, PROB_REF.grape));
+
+    setText('prob-cherry', formatProb(d.actual, counts.cherry));
+    setWidth('bar-cherry', probMeterWidth(d.actual, counts.cherry, PROB_REF.cherry));
+
+    setText('prob-bb-total', formatProb(d.actual, d.bbTotal));
+    setWidth('bar-bb-total', probMeterWidth(d.actual, d.bbTotal, PROB_REF.bbTotal));
+
+    setText('prob-rb-total', formatProb(d.actual, d.rbTotal));
+    setWidth('bar-rb-total', probMeterWidth(d.actual, d.rbTotal, PROB_REF.rbTotal));
+
+    setText('prob-total', formatProb(d.actual, d.grandTotal));
+
+    var undoBtn = document.getElementById('undo-btn');
+    if (undoBtn) undoBtn.disabled = state.history.length === 0;
+
+    setText('machine-label-text', MACHINE_LABELS[state.machine] || MACHINE_LABELS.m2);
+  }
+
+  function persistAndRender() {
+    saveState();
+    render();
+  }
+
+  function handleCountButtonClick(event) {
+    var btn = event.currentTarget;
+    var key = btn.dataset.key;
+    if (VALID_KEYS.indexOf(key) === -1) return;
+    state.counts[key] += 1;
+    state.history.push(key); // history stack drives Undo — one entry per tap, in order
+    persistAndRender();
+  }
+
+  function handleUndoClick() {
+    if (state.history.length === 0) return;
+    var lastKey = state.history.pop();
+    if (state.counts[lastKey] > 0) state.counts[lastKey] -= 1;
+    persistAndRender();
+  }
+
+  function handleTotalGInput(event) {
+    state.totalG = toSafeNonNegativeInt(event.target.value, 0);
+    persistAndRender();
+  }
+
+  function handleStartGInput(event) {
+    state.startG = toSafeNonNegativeInt(event.target.value, 0);
+    persistAndRender();
+  }
+
+  function handleMachineChange(event) {
+    if (!event.target.checked) return;
+    state.machine = event.target.id;
+    persistAndRender();
+  }
+
+  function handleResetClick() {
+    var confirmed = window.confirm('このセッションのG数・カウント・履歴をすべて消去します。よろしいですか？');
+    if (!confirmed) return;
+
+    state = createDefaultState();
+
+    var totalGInput = document.getElementById('total-g');
+    var startGInput = document.getElementById('start-g');
+    if (totalGInput) totalGInput.value = state.totalG;
+    if (startGInput) startGInput.value = state.startG;
+
+    var defaultRadio = document.getElementById(state.machine);
+    if (defaultRadio) defaultRadio.checked = true;
+
+    persistAndRender();
+  }
+
+  function init() {
+    state = loadState();
+
+    var totalGInput = document.getElementById('total-g');
+    var startGInput = document.getElementById('start-g');
+    if (totalGInput) totalGInput.value = state.totalG;
+    if (startGInput) startGInput.value = state.startG;
+    if (totalGInput) totalGInput.addEventListener('input', handleTotalGInput);
+    if (startGInput) startGInput.addEventListener('input', handleStartGInput);
+
+    var restoredMachineRadio = document.getElementById(state.machine);
+    if (restoredMachineRadio) restoredMachineRadio.checked = true;
+    MACHINE_IDS.forEach(function (id) {
+      var radio = document.getElementById(id);
+      if (radio) radio.addEventListener('change', handleMachineChange);
+    });
+
+    document.querySelectorAll('.stop-btn[data-key]').forEach(function (btn) {
+      btn.addEventListener('click', handleCountButtonClick);
+    });
+
+    var undoBtn = document.getElementById('undo-btn');
+    if (undoBtn) undoBtn.addEventListener('click', handleUndoClick);
+
+    var resetBtn = document.getElementById('reset-btn');
+    if (resetBtn) resetBtn.addEventListener('click', handleResetClick);
+
+    render();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+<!-- PWA: register the service worker so the counter boots offline after the first visit -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('./sw.js').catch(function (err) {
+        console.warn('[juggler-counter] Service Worker registration failed:', err);
+      });
+    });
+  }
+</script>
+</body>
+</html>
